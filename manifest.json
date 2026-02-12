@@ -1,0 +1,93 @@
+{
+  "manifest_version": "0.3",
+  "name": "context7",
+  "version": "0.1.0",
+  "display_name": "Context7 MCP",
+  "description": "Remote MCP server for up-to-date code documentation for LLMs and AI code editors.",
+  "homepage": "https://context7.com",
+  "documentation": "https://context7.com/docs",
+  "icon": "icon.png",
+  "author": {
+    "name": "Stephen Akinyemi"
+  },
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ]
+  },
+  "server": {
+    "transport": "http",
+    "mcp_config": {
+      "url": "https://mcp.context7.com/mcp/oauth",
+      "oauth_config": {
+        "scopes": []
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "resolve-library-id",
+      "description": "Resolve a general library name into a Context7-compatible library ID."
+    },
+    {
+      "name": "get-library-docs",
+      "description": "Retrieve documentation for a library using a Context7-compatible library ID."
+    }
+  ],
+  "_meta": {
+    "store.tool.mcpb": {
+      "categories": ["documentation", "search", "development"],
+      "static_responses": {
+        "tools/list": {
+          "tools": [
+            {
+              "name": "resolve-library-id",
+              "description": "Resolve a general library name into a Context7-compatible library ID.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "libraryName": {
+                    "type": "string",
+                    "description": "The name of the library to search for (e.g., 'react', 'nextjs', 'mongodb')"
+                  }
+                },
+                "required": [
+                  "libraryName"
+                ]
+              }
+            },
+            {
+              "name": "get-library-docs",
+              "description": "Retrieve documentation for a library using a Context7-compatible library ID.",
+              "input_schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "context7CompatibleLibraryID": {
+                    "type": "string",
+                    "description": "Exact Context7-compatible library ID (e.g., /mongodb/docs, /vercel/next.js)"
+                  },
+                  "topic": {
+                    "type": "string",
+                    "description": "The topic or question to focus the documentation on"
+                  },
+                  "tokens": {
+                    "type": "number",
+                    "description": "Maximum number of tokens to return (default: 10000)",
+                    "default": 10000
+                  }
+                },
+                "required": [
+                  "context7CompatibleLibraryID"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
