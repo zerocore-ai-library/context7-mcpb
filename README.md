@@ -20,12 +20,12 @@ tool info library/context7
 
 ```bash
 # Resolve a library ID
-tool call library/context7 -m resolve-library-id -p query="How to use hooks" -p libraryName=react
+tool call library/context7 -m resolve-library-id -p libraryName=react
 ```
 
 ```bash
-# Query library documentation
-tool call library/context7 -m query-docs -p libraryId=/facebook/react -p query="How to use useEffect hook"
+# Get library documentation
+tool call library/context7 -m get-library-docs -p context7CompatibleLibraryID=/facebook/react
 ```
 
 ### Authentication
@@ -39,23 +39,23 @@ Context7 MCP uses OAuth 2.1 authentication. On first use, you'll be prompted to 
 
 ### `resolve-library-id`
 
-Resolves a package/product name to a Context7-compatible library ID.
+Resolve a general library name into a Context7-compatible library ID.
 
 **Input:**
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `query` | string | Yes | The user's original question or task. This is used to rank results by relevance. |
-| `libraryName` | string | Yes | Library name to search for and retrieve a Context7-compatible library ID. |
+| `libraryName` | string | Yes | The name of the library to search for (e.g., "react", "nextjs", "mongodb") |
 
-### `query-docs`
+### `get-library-docs`
 
-Retrieves and queries up-to-date documentation and code examples.
+Retrieve documentation for a library using a Context7-compatible library ID.
 
 **Input:**
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `libraryId` | string | Yes | Exact Context7-compatible library ID (e.g., '/mongodb/docs', '/vercel/next.js'). |
-| `query` | string | Yes | The question or task you need help with. Be specific and detailed. |
+| `context7CompatibleLibraryID` | string | Yes | Exact Context7-compatible library ID (e.g., /mongodb/docs, /vercel/next.js) |
+| `topic` | string | No | The topic or question to focus the documentation on |
+| `tokens` | number | No | Maximum number of tokens to return (default: 10000) |
 
 ## License
 
