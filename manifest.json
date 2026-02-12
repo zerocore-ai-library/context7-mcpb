@@ -11,19 +11,12 @@
     "name": "Stephen Akinyemi"
   },
   "compatibility": {
-    "platforms": [
-      "darwin",
-      "win32",
-      "linux"
-    ]
+    "platforms": ["darwin", "win32", "linux"]
   },
   "server": {
     "transport": "http",
     "mcp_config": {
-      "url": "https://mcp.context7.com/mcp/oauth",
-      "oauth_config": {
-        "scopes": []
-      }
+      "url": "https://mcp.context7.com/mcp/oauth"
     }
   },
   "tools": [
@@ -58,10 +51,7 @@
                     "description": "Library name to search for and retrieve a Context7-compatible library ID."
                   }
                 },
-                "required": [
-                  "query",
-                  "libraryName"
-                ]
+                "required": ["query", "libraryName"]
               }
             },
             {
@@ -80,10 +70,7 @@
                     "description": "The question or task you need help with. Be specific and detailed."
                   }
                 },
-                "required": [
-                  "libraryId",
-                  "query"
-                ]
+                "required": ["libraryId", "query"]
               }
             }
           ]
