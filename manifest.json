@@ -29,11 +29,11 @@
   "tools": [
     {
       "name": "resolve-library-id",
-      "description": "Resolve a general library name into a Context7-compatible library ID."
+      "description": "Resolves a package/product name to a Context7-compatible library ID."
     },
     {
-      "name": "get-library-docs",
-      "description": "Retrieve documentation for a library using a Context7-compatible library ID."
+      "name": "query-docs",
+      "description": "Retrieves and queries up-to-date documentation and code examples."
     }
   ],
   "_meta": {
@@ -44,44 +44,45 @@
           "tools": [
             {
               "name": "resolve-library-id",
-              "description": "Resolve a general library name into a Context7-compatible library ID.",
+              "description": "Resolves a package/product name to a Context7-compatible library ID.",
               "input_schema": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "type": "object",
                 "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "The user's original question or task. This is used to rank results by relevance."
+                  },
                   "libraryName": {
                     "type": "string",
-                    "description": "The name of the library to search for (e.g., 'react', 'nextjs', 'mongodb')"
+                    "description": "Library name to search for and retrieve a Context7-compatible library ID."
                   }
                 },
                 "required": [
+                  "query",
                   "libraryName"
                 ]
               }
             },
             {
-              "name": "get-library-docs",
-              "description": "Retrieve documentation for a library using a Context7-compatible library ID.",
+              "name": "query-docs",
+              "description": "Retrieves and queries up-to-date documentation and code examples.",
               "input_schema": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "type": "object",
                 "properties": {
-                  "context7CompatibleLibraryID": {
+                  "libraryId": {
                     "type": "string",
-                    "description": "Exact Context7-compatible library ID (e.g., /mongodb/docs, /vercel/next.js)"
+                    "description": "Exact Context7-compatible library ID (e.g., '/mongodb/docs', '/vercel/next.js')."
                   },
-                  "topic": {
+                  "query": {
                     "type": "string",
-                    "description": "The topic or question to focus the documentation on"
-                  },
-                  "tokens": {
-                    "type": "number",
-                    "description": "Maximum number of tokens to return (default: 10000)",
-                    "default": 10000
+                    "description": "The question or task you need help with. Be specific and detailed."
                   }
                 },
                 "required": [
-                  "context7CompatibleLibraryID"
+                  "libraryId",
+                  "query"
                 ]
               }
             }
